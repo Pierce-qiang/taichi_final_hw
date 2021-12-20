@@ -1,4 +1,4 @@
-# 太极图形课S1-大作业
+# 太极图形课S1-大作业 (未完成）
 
 ## 作业来源
 > 基于课程11的 stable_fluid 代码添加 advection reflection，maccormack, MICPCG
