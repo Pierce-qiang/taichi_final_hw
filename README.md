@@ -13,6 +13,7 @@
  -    press 'A' switch advection reflection
  -    press 'C' show curl field
  -    press 'V' show velocity field
+ -    press 'S' enhance vortex
  -    You can change MGPCG and Jacobi iteration to change precision
 
 ## 效果展示
