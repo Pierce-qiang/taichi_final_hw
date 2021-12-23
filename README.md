@@ -55,7 +55,7 @@
 > MGPCG: 经典conjugate gradient 用 multigrid 做 预条件，参考 Games201第四课及mgpcg代码
 
 ## 分析比较
-> 在smoke，和 spay 场景中有 '源' 不断产生新的速度，如果要精确解出Ax = b jacobi,mgpcg，sparse matrix 几乎相同的消耗
+> 在smoke，和 spray 场景中有 '源' 不断产生新的速度，如果要精确解出Ax = b jacobi,mgpcg，sparse matrix 几乎相同的消耗
 因此这种场景不如用Jacobi，容易实现
 
 > advection refletion 能一定程度上加快收敛, 减小残差
