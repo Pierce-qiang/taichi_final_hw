@@ -1,1 +1,3 @@
-taichi
+ - taichi
+ - numpy
+ - argparse
