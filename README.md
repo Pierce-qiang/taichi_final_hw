@@ -73,7 +73,7 @@
 
 ![reference_sparse_matrix.gif](./data/reference_sparse_matrix.gif)
 
-> 如果速度场散度变化很大，需要 再对 速度 project, （如过解算器不准的话，视觉上也没有太大问题，但如果残差小，速度场会发生剧烈抖动）
+> 如果速度场散度变化很大，需要 再对 速度 project, （如果解算器不准的话，视觉上也没有太大问题，但如果残差小，速度场会发生剧烈抖动）
 
 - Reflection_without_projection
 
