@@ -3,6 +3,7 @@
 ## 作业来源
 > 基于课程11的 stable_fluid 代码添加 advection reflection，maccormack, MGPCG
 
+
 #### 运行环境：
 > [Taichi] version 0.8.7, llvm 10.0.0, commit 88d81df6, win, python 3.7.7
 #### 运行：
@@ -15,16 +16,28 @@
  -    You can change MGPCG and Jacobi iteration to change precision
 
 ## 效果展示
-> 
+ - impulse
+
+
+![MGPCG_impulse_low_accuracy_without_reflection.gif](./data/MGPCG_impulse_low_accuracy_without_reflection.gif)
+
+- smoke
+
+
+![MGPCG_with_less_ite.gif](./data/MGPCG_with_less_ite.gif)
 
 ## 整体结构
-> 脉络清晰的结构能完整展示你的设计思想，以及实现方式，方便读者快速代入。Python的代码，可以使用命令：`yapf -i xx.py`来格式化。可以在repo的目录中包含如下内容：
 ```
 -LICENSE
 -|data
 -README.MD
--xx.py
+-stable_fluid.py
+-PCG_Solver.py
 ```
+ - scene choice
+ - use_spray   # which change velocity a lot, you can test reflection without projection
+ - use_smoke  # 2 smoke source
+ - use_impulse  # drag impulse
 
 ## 实现细节：
 > maccormack: 首先插值当前位置得到q, 然后以当前速度场backtrace位置p_new，差值得到 new_q, 再用得到的p_new 用 -dt backtrace p_aux, 插值得到 q_aux,
@@ -33,6 +46,34 @@
 
 > advection_reflction: 先 advect 0.5dt, 得到 advected_v, 再对advected_v project, 得到 projected_v, reflected_v = 2 * projected_v - advected_v
 > 再以 projected_v当速度场 advect prejected_v 得到最后速度, 如果速度场散度变化很大，需要 再对 速度 project
+
+
+
 ![image](https://user-images.githubusercontent.com/60810304/147249504-5b9bbeca-b522-42a7-95bf-ca5513145642.png)
 
 > MGPCG: 经典conjugate gradient 用 multigrid 做 预条件，参考 Games201第四课及mgpcg代码
+
+## 分析比较
+> 在smoke，和 spay 场景中有 '源' 不断产生新的速度，如果要精确解出Ax = b jacobi,mgpcg，sparse matrix 几乎相同的消耗
+因此这种场景不如用Jacobi，容易实现
+
+> advection refletion 能一定程度上加快收敛, 减小残差
+- 40ite_jacobi_without_reflection
+
+
+![40ite_jacobi_without_reflection.jpg](./data/40ite_jacobi_without_reflection.jpg)
+
+
+- 40ite_jacobi_with_reflection
+
+![40ite_jacobi_with_reflection.jpg](./data/40ite_jacobi_with_reflection.jpg)
+
+- reference_sparse_matrix
+
+![reference_sparse_matrix.gif](./data/reference_sparse_matrix.gif)
+
+> 如果速度场散度变化很大，需要 再对 速度 project, （如过解算器不准的话，视觉上也没有太大问题，但如果残差小，速度场会发生剧烈抖动）
+
+- Reflection_without_projection
+
+![Reflection_without_projection.gif](./data/Reflection_without_projection.gif)
