@@ -2,7 +2,11 @@
 
 ## 作业来源
 > 基于课程11的 stable_fluid 代码添加 advection reflection，maccormack, MGPCG
-
+ - Reference
+ - Advection reflection https://jzehnder.me/publications/advectionReflection/
+ - https://github.com/taichi-dev/taichi/blob/master/python/taichi/examples/simulation/stable_fluid.py
+ - https://github.com/erizmr/stable_fluid_MGPCG/blob/master/stable_fluid_MGPCG.py
+ - https://forum.taichi.graphics/t/homework-0-fluid-simulation/459
 
 #### 运行环境：
 > [Taichi] version 0.8.7, llvm 10.0.0, commit 88d81df6, win, python 3.7.7
